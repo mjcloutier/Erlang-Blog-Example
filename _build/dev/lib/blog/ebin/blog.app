@@ -6,6 +6,7 @@
                         'Elixir.Blog.ErrorHelpers','Elixir.Blog.ErrorView',
                         'Elixir.Blog.Gettext','Elixir.Blog.LayoutView',
                         'Elixir.Blog.PageController','Elixir.Blog.PageView',
+                        'Elixir.Blog.Post','Elixir.Blog.PostView',
                         'Elixir.Blog.Repo','Elixir.Blog.Router',
                         'Elixir.Blog.Router.Helpers','Elixir.Blog.UserSocket',
                         'Elixir.Blog.Web']},
