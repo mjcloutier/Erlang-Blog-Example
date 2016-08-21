@@ -1,1 +1,1 @@
-web: bin/zotonic debug
+web: mix phoenix.server

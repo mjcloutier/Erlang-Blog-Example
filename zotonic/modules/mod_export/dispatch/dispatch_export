@@ -1,3 +1,0 @@
-[
-	{export_rsc_csv, ["export", "csv", id], controller_export_resource, [ {content_type, "text/csv"} ]}
-].
