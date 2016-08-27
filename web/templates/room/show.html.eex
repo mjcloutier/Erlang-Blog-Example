@@ -1,0 +1,32 @@
+<h2>Show room</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @room.name %>
+  </li>
+
+  <li>
+    <strong>Created by username:</strong>
+    <%= @room.created_by_username %>
+  </li>
+
+  <li>
+    <strong>Created by:</strong>
+    <%= @room.created_by %>
+  </li>
+
+  <li>
+    <strong>Created at:</strong>
+    <%= @room.created_at %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: room_path(@conn, :edit, @room) %>
+<%= link "Back", to: room_path(@conn, :index) %>
+
+<h2>Messages</h2>
+<div id="ChatMessages"></div>
+<div id="ChatMessageForm"></div>

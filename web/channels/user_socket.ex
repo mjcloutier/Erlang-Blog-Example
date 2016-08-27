@@ -1,8 +1,10 @@
 defmodule Blog.UserSocket do
   use Phoenix.Socket
+  require Logger
 
   ## Channels
   # channel "room:*", Blog.RoomChannel
+  channel "chat_messages:lobby", Blog.ChatMessagesChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
@@ -22,6 +24,17 @@ defmodule Blog.UserSocket do
   def connect(_params, socket) do
     {:ok, socket}
   end
+
+  # def connect(%{"token" => token}, socket) do
+  #   # max_age: 1209600 is equivalent to two weeks in seconds
+  #   Logger.debug token
+  #   case Phoenix.Token.verify(socket, "user socket", token, max_age: 1209600) do
+  #     {:ok, user_id} ->
+  #       {:ok, assign(socket, :user, user_id)}
+  #     {:error, reason} ->
+  #       :error
+  #   end
+  # end
 
   # Socket id's are topics that allow you to identify all sockets for a given user:
   #
