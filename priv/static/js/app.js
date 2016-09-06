@@ -1730,6 +1730,21 @@ module.exports = isPlainObject;
   })();
 });
 
+require.register("materialize/index.js", function(exports, require, module) {
+  require = __makeRelativeRequire(require, {}, "materialize");
+  (function() {
+    module.exports = function materialize(list, key, value) {
+  var ret = {};
+
+  if (list) Array.prototype.forEach.call(list, function(item) {
+    ret[item[key||'name']] = item[value||'value'];
+  });
+
+  return ret;
+};
+  })();
+});
+
 require.register("object-assign/index.js", function(exports, require, module) {
   require = __makeRelativeRequire(require, {}, "object-assign");
   (function() {
@@ -25076,17 +25091,16 @@ var ChatMessageForm = function (_Component) {
 
       return _react2.default.createElement(
         "form",
-        { onSubmit: this.submit.bind(this) },
+        { onSubmit: this.submit.bind(this), className: "col s12" },
         _react2.default.createElement(
           "fieldset",
-          null,
-          _react2.default.createElement("input", { type: "text", ref: "messageBody" }),
-          _react2.default.createElement("input", { type: "submit", ref: "btnSubmit" }),
+          { className: "row" },
           _react2.default.createElement(
-            "p",
-            null,
-            "You typed: ",
-            message.body
+            "div",
+            { className: "input-field" },
+            _react2.default.createElement("input", { type: "text", ref: "messageBody" }),
+            _react2.default.createElement("input", { type: "submit", ref: "btnSubmit",
+              className: "waves-effect waves-light btn" })
           )
         )
       );
@@ -25127,6 +25141,10 @@ var _redux = require("redux");
 var _reactRedux = require("react-redux");
 
 var _ChatMessages = require("../reducers/ChatMessages");
+
+var _materialize = require("materialize");
+
+var _materialize2 = _interopRequireDefault(_materialize);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25171,19 +25189,27 @@ var ChatMessageList = function (_Component) {
 
 
       return _react2.default.createElement(
-        "div",
-        { className: "messages" },
+        "ul",
+        { className: "messages collection" },
         messages.length > 0 ? messages.map(function (message) {
           return _react2.default.createElement(
-            "div",
-            { key: message.id },
-            message.body
+            "li",
+            {
+              key: message.id,
+              className: "collection-item" },
+            _react2.default.createElement(
+              "span",
+              null,
+              message.body,
+              " ",
+              message.created_at
+            )
           );
         }) : _react2.default.createElement(
-          "div",
-          null,
+          "li",
+          { className: "collection-item" },
           _react2.default.createElement(
-            "p",
+            "span",
             null,
             "No messages yet"
           )
@@ -25320,9 +25346,9 @@ console.log(dom);
 
 ;require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
 require.alias("phoenix/priv/static/phoenix.js", "phoenix");
+require.alias("react/react.js", "react");
 require.alias("redux/lib/index.js", "redux");
 require.alias("react-redux/lib/index.js", "react-redux");
-require.alias("react/react.js", "react");
 require.alias("shortid/lib/util/cluster-worker-id-browser.js", "shortid/lib/util/cluster-worker-id");
 require.alias("shortid/lib/util/cluster-worker-id-browser.js", "shortid/lib/util/cluster-worker-id.js");
 require.alias("shortid/lib/random/random-byte-browser.js", "shortid/lib/random/random-byte");

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import {createStore} from "redux"
 import {Provider, connect} from "react-redux"
 import {addMessageReducer, Store} from "../reducers/ChatMessages"
+import materialize from "materialize"
 
 export default class ChatMessageList extends Component {
   constructor(){
@@ -28,17 +29,21 @@ export default class ChatMessageList extends Component {
     const {messages} = this.state
 
     return (
-      <div className="messages">
+      <ul className="messages collection">
         {
           (messages.length > 0)?
             messages.map(message => (
-              <div key={message.id}>{message.body}</div>
+              <li
+                key={message.id}
+                className="collection-item">
+                <span>{message.body} {message.created_at}</span>
+              </li>
             ))
-          : <div>
-            <p>No messages yet</p>
-          </div>
+          : <li className="collection-item">
+            <span>No messages yet</span>
+          </li>
         }
-      </div>
+      </ul>
     )
   }
 

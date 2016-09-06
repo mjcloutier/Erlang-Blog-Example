@@ -55,6 +55,16 @@ exports.config = {
       presets: ["es2015", "react"],
       // Do not use ES6 compiler in vendor code
       ignore: [/web\/static\/vendor/]
+    },
+    sass: {
+      mode: "ruby",
+      options: {
+        includePaths: [
+          "node_modules/materialize-css/dist/css/materialize.min.css"
+        ],
+        debug: "comments",
+        sourceMapEmbed: false
+      }
     }
   },
 

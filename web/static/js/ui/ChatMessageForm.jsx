@@ -54,11 +54,13 @@ export default class ChatMessageForm extends Component{
     const {message} = this.state
 
     return (
-      <form onSubmit={this.submit.bind(this)}>
-        <fieldset>
-          <input type="text" ref="messageBody" />
-          <input type="submit" ref="btnSubmit" />
-          <p>You typed: {message.body}</p>
+      <form onSubmit={this.submit.bind(this)} className="col s12">
+        <fieldset className="row">
+          <div className="input-field">
+            <input type="text" ref="messageBody" />
+            <input type="submit" ref="btnSubmit"
+              className="waves-effect waves-light btn" />
+          </div>
         </fieldset>
       </form>
     )

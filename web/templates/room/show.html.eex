@@ -1,32 +1,22 @@
-<h2>Show room</h2>
+<div class="row">
+  <div class="col s8">
+    <div id="ChatMessages"></div>
+  </div>
+  <div class="col s4">
+    <div class="room-details widget">
+      <h2><%= @room.name %></h2>
+      <dl>
+        <dt>Created by username:</dt>
+        <dd><%= @room.created_by_username %></dd>
+        <dt>Created by username:</dt>
+        <dd><%= @room.created_by_username %></dd>
+        <dt>Created at:</dt>
+        <dd><%= @room.created_at %></dd>
+      </dl>
 
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @room.name %>
-  </li>
-
-  <li>
-    <strong>Created by username:</strong>
-    <%= @room.created_by_username %>
-  </li>
-
-  <li>
-    <strong>Created by:</strong>
-    <%= @room.created_by %>
-  </li>
-
-  <li>
-    <strong>Created at:</strong>
-    <%= @room.created_at %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: room_path(@conn, :edit, @room) %>
-<%= link "Back", to: room_path(@conn, :index) %>
-
-<h2>Messages</h2>
-<div id="ChatMessages"></div>
-<div id="ChatMessageForm"></div>
+      <%= link "Edit", to: room_path(@conn, :edit, @room) %>
+      <%= link "Back", to: room_path(@conn, :index) %>
+    </div>
+    <div id="ChatMessageForm"></div>
+  </div>
+</div>
