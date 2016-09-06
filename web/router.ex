@@ -28,8 +28,10 @@ defmodule Blog.Router do
   scope "/", Blog do
     pipe_through :browser # Use the default browser stack
 
-    # get "/", PageController, :index
     get "/", RoomController, :index
+
+    # get "/", RoomController, :index
+    get "/publish_item", PageController, :publish_item
 
     resources "/rooms", RoomController
   end
@@ -42,5 +44,6 @@ defmodule Blog.Router do
   # end
   scope "/api", Blog do
     resources "/chat_messages", ChatMessageController, except: [:new, :edit]
+    resources "/item_lists", ItemListController, except: [:new, :edit]
   end
 end

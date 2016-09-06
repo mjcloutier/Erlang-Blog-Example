@@ -5,6 +5,7 @@ defmodule Blog.UserSocket do
   ## Channels
   # channel "room:*", Blog.RoomChannel
   channel "chat_messages:lobby", Blog.ChatMessagesChannel
+  channel "item_list:lobby", Blog.ItemListChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

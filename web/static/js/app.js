@@ -22,3 +22,5 @@ import "phoenix_html"
 
 import ChatMessageList from "./ui/ChatMessageList"
 import ChatMessageForm from "./ui/ChatMessageForm"
+
+import "./ui/PublishItem"

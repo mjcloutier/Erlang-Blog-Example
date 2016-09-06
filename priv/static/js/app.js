@@ -24842,6 +24842,8 @@ var _ChatMessageForm = require("./ui/ChatMessageForm");
 
 var _ChatMessageForm2 = _interopRequireDefault(_ChatMessageForm);
 
+require("./ui/PublishItem");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 });
 
@@ -25202,11 +25204,125 @@ if (dom) {
 }
 });
 
+;require.register("web/static/js/ui/PublishItem.jsx", function(exports, require, module) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require("react-dom");
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _socket = require("../socket");
+
+var _socket2 = _interopRequireDefault(_socket);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var channel = _socket2.default.channel("item_list:lobby", {});
+channel.join().receive("ok", function (resp) {
+  console.log("Joined successfully", resp);
+}).receive("error", function (resp) {
+  console.log("Unable to join", resp);
+});
+
+var PublishItem = function (_Component) {
+  _inherits(PublishItem, _Component);
+
+  function PublishItem() {
+    _classCallCheck(this, PublishItem);
+
+    var _this = _possibleConstructorReturn(this, (PublishItem.__proto__ || Object.getPrototypeOf(PublishItem)).call(this));
+
+    _this.state = {
+      respond: ""
+    };
+    return _this;
+  }
+
+  _createClass(PublishItem, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      channel.on("shout", function (payload) {
+        _this2.setState({
+          respond: payload.item
+        });
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+
+      var itemInput = _reactDom2.default.findDOMNode(this.refs.itemInput);
+      console.log(itemInput.value);
+
+      channel.push("shout", {
+        item: itemInput.value,
+        ar: [{ name: "One" }, { name: "Two" }, { name: "Three" }]
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+
+      return _react2.default.createElement(
+        "form",
+        { onSubmit: this.handleSubmit.bind(this) },
+        _react2.default.createElement(
+          "legend",
+          null,
+          "Publish"
+        ),
+        _react2.default.createElement("input", { ref: "itemInput" }),
+        _react2.default.createElement(
+          "p",
+          null,
+          "Respond:"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          this.state.respond
+        )
+      );
+    }
+  }]);
+
+  return PublishItem;
+}(_react.Component);
+
+exports.default = PublishItem;
+
+
+var dom = document.getElementById("PublishItem");
+if (dom) {
+  _reactDom2.default.render(_react2.default.createElement(PublishItem, null), dom);
+}
+console.log(dom);
+});
+
 ;require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
 require.alias("phoenix/priv/static/phoenix.js", "phoenix");
-require.alias("react/react.js", "react");
 require.alias("redux/lib/index.js", "redux");
 require.alias("react-redux/lib/index.js", "react-redux");
+require.alias("react/react.js", "react");
 require.alias("shortid/lib/util/cluster-worker-id-browser.js", "shortid/lib/util/cluster-worker-id");
 require.alias("shortid/lib/util/cluster-worker-id-browser.js", "shortid/lib/util/cluster-worker-id.js");
 require.alias("shortid/lib/random/random-byte-browser.js", "shortid/lib/random/random-byte");
