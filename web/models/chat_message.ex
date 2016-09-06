@@ -5,7 +5,7 @@ defmodule Blog.ChatMessage do
     field :room_id, :integer
     field :username, :string
     field :message, :string
-    field :created_at, Ecto.DateTime
+    field :created_at, Ecto.DateTime, default: Ecto.DateTime.utc
 
     timestamps()
   end

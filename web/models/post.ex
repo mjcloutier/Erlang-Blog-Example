@@ -7,7 +7,7 @@ defmodule Blog.Post do
     field :description, :string
     field :picture, :string
     field :body, :string
-    field :createdAt, Ecto.DateTime
+    field :createdAt, Ecto.DateTime, default: Ecto.DateTime.utc
 
     timestamps()
   end

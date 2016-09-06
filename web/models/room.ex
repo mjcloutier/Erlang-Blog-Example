@@ -5,7 +5,7 @@ defmodule Blog.Room do
     field :name, :string
     field :created_by_username, :string
     field :created_by, :integer
-    field :created_at, Ecto.DateTime
+    field :created_at, Ecto.DateTime, default: Ecto.DateTime.utc
 
     timestamps()
   end
