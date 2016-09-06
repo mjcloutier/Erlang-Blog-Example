@@ -25169,10 +25169,14 @@ var ChatMessageList = function (_Component) {
   }
 
   _createClass(ChatMessageList, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
+    key: "componentWillMount",
+    value: function componentWillMount() {
       var _this2 = this;
 
+      // Load initial data
+
+
+      // Subscribe
       _ChatMessages.Store.subscribe(function () {
         var newMessage = _ChatMessages.Store.getState();
         var messages = _this2.state.messages.concat(newMessage);

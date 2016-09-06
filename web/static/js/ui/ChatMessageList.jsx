@@ -14,7 +14,11 @@ export default class ChatMessageList extends Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
+    // Load initial data
+
+
+    // Subscribe
     Store.subscribe(() => {
       const newMessage = Store.getState()
       let messages = this.state.messages.concat(newMessage)

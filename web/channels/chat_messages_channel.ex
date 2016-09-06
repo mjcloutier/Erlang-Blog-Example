@@ -1,8 +1,13 @@
 defmodule Blog.ChatMessagesChannel do
   use Blog.Web, :channel
+  alias Blog.ChatMessage
 
   def join("chat_messages:lobby", payload, socket) do
     if authorized?(payload) do
+
+      # load messages
+      # chat_messages = Repo.all(ChatMessage)
+
       {:ok, socket}
     else
       {:error, %{reason: "unauthorized"}}
@@ -23,6 +28,9 @@ defmodule Blog.ChatMessagesChannel do
   end
 
   def handle_in("new_message", %{"message" => message}, socket) do
+
+    changeset = ChatMessage.changeset(%ChatMessage{}, message)
+
     broadcast socket, "new_message", %{message => message}
     {:noreply, socket}
   end
