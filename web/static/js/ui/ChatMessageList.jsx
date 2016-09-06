@@ -4,6 +4,7 @@ import {createStore} from "redux"
 import {Provider, connect} from "react-redux"
 import {addMessageReducer, Store} from "../reducers/ChatMessages"
 import materialize from "materialize"
+import zepto from "zepto"
 
 export default class ChatMessageList extends Component {
   constructor(){
@@ -16,7 +17,9 @@ export default class ChatMessageList extends Component {
 
   componentWillMount(){
     // Load initial data
-
+    $.get("/api/chat_messages", (res) => {
+      console.log(res)
+    })
 
     // Subscribe
     Store.subscribe(() => {
