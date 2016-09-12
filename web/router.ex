@@ -46,5 +46,6 @@ defmodule Blog.Router do
     resources "/chat_messages", ChatMessageController, except: [:new, :edit]
     resources "/item_lists", ItemListController, except: [:new, :edit]
     resources "/comments", CommentController, except: [:new, :edit]
+    resources "/videos", VideoController, except: [:new, :edit]
   end
 end
