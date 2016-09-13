@@ -3,6 +3,8 @@ defmodule Blog.UserController do
 
   alias Blog.User
 
+  plug Guardian.Plug.EnsureAuthenticated, handler: __MODULE__
+
   def index(conn, _params) do
     users = Repo.all(User)
     render(conn, "index.html", users: users)
@@ -34,7 +36,7 @@ defmodule Blog.UserController do
   # For logged in users
   def edit(conn, %{"id" => id}) do
     current_user = Guardian.Plug.current_resource(conn)
-    
+
     user = Repo.get!(User, id)
     changeset = User.changeset(user)
     render(conn, "edit.html", user: user, changeset: changeset)
@@ -64,5 +66,14 @@ defmodule Blog.UserController do
     conn
     |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: user_path(conn, :index))
+  end
+
+  # handle the case where no authenticated user
+  # was found
+  def unauthenticated(conn, params) do
+    conn
+    |> put_status(401)
+    |> put_flash(:error, "Authentication required")
+    |> redirect(to: "/users")
   end
 end

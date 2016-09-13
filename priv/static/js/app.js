@@ -27010,8 +27010,8 @@ if (dom) {
 console.log(dom);
 });
 
-;require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
-require.alias("phoenix/priv/static/phoenix.js", "phoenix");
+;require.alias("phoenix/priv/static/phoenix.js", "phoenix");
+require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
 require.alias("react/react.js", "react");
 require.alias("redux/lib/index.js", "redux");
 require.alias("react-redux/lib/index.js", "react-redux");
