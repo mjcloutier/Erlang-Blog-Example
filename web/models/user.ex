@@ -7,7 +7,7 @@ defmodule Blog.User do
     field :encrypted_password, :string
     field :picture, :string
     field :birth, Ecto.DateTime
-    field :created, Ecto.DateTime
+    field :created, Ecto.DateTime, default: Ecto.DateTime.utc
 
     timestamps()
   end
@@ -18,6 +18,6 @@ defmodule Blog.User do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:username, :email, :encrypted_password, :picture, :birth, :created])
-    |> validate_required([:username, :email, :encrypted_password, :picture, :birth, :created])
+    |> validate_required([:username, :email, :created])
   end
 end
