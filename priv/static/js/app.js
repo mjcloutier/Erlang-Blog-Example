@@ -27012,17 +27012,17 @@ console.log(dom);
 
 ;require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
 require.alias("phoenix/priv/static/phoenix.js", "phoenix");
-require.alias("react/react.js", "react");
 require.alias("redux/lib/index.js", "redux");
 require.alias("react-redux/lib/index.js", "react-redux");
+require.alias("react/react.js", "react");
 require.alias("shortid/lib/util/cluster-worker-id-browser.js", "shortid/lib/util/cluster-worker-id");
 require.alias("shortid/lib/util/cluster-worker-id-browser.js", "shortid/lib/util/cluster-worker-id.js");
 require.alias("shortid/lib/random/random-byte-browser.js", "shortid/lib/random/random-byte");
 require.alias("shortid/lib/random/random-byte-browser.js", "shortid/lib/random/random-byte.js");
+require.alias("zepto/dist/zepto.js", "zepto");
 require.alias("lodash/lodash.js", "lodash");
 require.alias("invariant/browser.js", "invariant");
-require.alias("process/browser.js", "process");
-require.alias("zepto/dist/zepto.js", "zepto");process = require('process');require.register("___globals___", function(exports, require, module) {
+require.alias("process/browser.js", "process");process = require('process');require.register("___globals___", function(exports, require, module) {
   
 });})();require('___globals___');
 

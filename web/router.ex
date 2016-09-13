@@ -1,6 +1,12 @@
 defmodule Blog.Router do
   use Blog.Web, :router
 
+  # For authentication
+  pipeline :browser_auth do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
+  end
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -26,7 +32,8 @@ defmodule Blog.Router do
   end
 
   scope "/", Blog do
-    pipe_through :browser # Use the default browser stack
+    # pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :browser_auth]
 
     get "/", RoomController, :index
 
