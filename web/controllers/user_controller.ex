@@ -31,7 +31,10 @@ defmodule Blog.UserController do
     render(conn, "show.html", user: user)
   end
 
+  # For logged in users
   def edit(conn, %{"id" => id}) do
+    current_user = Guardian.Plug.current_resource(conn)
+    
     user = Repo.get!(User, id)
     changeset = User.changeset(user)
     render(conn, "edit.html", user: user, changeset: changeset)
