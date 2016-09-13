@@ -1,0 +1,38 @@
+<h2>Show user</h2>
+
+<ul>
+
+  <li>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </li>
+
+  <li>
+    <strong>Encrypted password:</strong>
+    <%= @user.encrypted_password %>
+  </li>
+
+  <li>
+    <strong>Picture:</strong>
+    <%= @user.picture %>
+  </li>
+
+  <li>
+    <strong>Birth:</strong>
+    <%= @user.birth %>
+  </li>
+
+  <li>
+    <strong>Created:</strong>
+    <%= @user.created %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: user_path(@conn, :edit, @user) %>
+<%= link "Back", to: user_path(@conn, :index) %>
