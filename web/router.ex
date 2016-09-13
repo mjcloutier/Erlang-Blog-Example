@@ -41,6 +41,7 @@ defmodule Blog.Router do
     get "/publish_item", PageController, :publish_item
 
     resources "/rooms", RoomController
+    resources "/users", UserController
   end
 
   resources "/posts", PostController
